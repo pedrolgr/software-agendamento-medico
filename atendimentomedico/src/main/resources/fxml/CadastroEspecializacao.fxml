@@ -46,7 +46,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="TxtId" GridPane.columnIndex="1" />
+                  <TextField fx:id="TxtId" editable="false" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <ListView fx:id="listaEspecializacao" layoutX="14.0" layoutY="43.0" onKeyPressed="#listaEspecializacao_keyPressed" onMouseClicked="#listaEspecializacao_mouseClicked" prefHeight="332.0" prefWidth="281.0" />

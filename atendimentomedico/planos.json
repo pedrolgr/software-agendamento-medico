@@ -1,1 +1,9 @@
-[ ]
+[ {
+  "id" : 2,
+  "nome" : "Unimed",
+  "tipo" : "Nacional"
+}, {
+  "id" : 3,
+  "nome" : "Bradesco",
+  "tipo" : "Plus"
+} ]

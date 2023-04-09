@@ -31,7 +31,18 @@ public class OpcoesController implements Initializable{
 
     @FXML
     private void btnMedico(ActionEvent action) {
-        System.out.println("Medico");
+        
+        FXMLLoader fx = new FXMLLoader(OpcoesController.class.getResource("/fxml/CadastroMedico.fxml"));
+       
+        try {
+            Scene s = new Scene(fx.load());
+            Stage st = new Stage();
+            st.setTitle("Cadastro Médico");
+            st.setScene(s);
+            st.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML

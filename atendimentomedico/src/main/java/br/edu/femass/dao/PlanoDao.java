@@ -8,7 +8,6 @@ import java.util.Set;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.edu.femass.model.PlanoDeSaude;
 

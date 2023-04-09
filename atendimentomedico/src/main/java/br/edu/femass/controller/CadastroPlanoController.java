@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
+import br.edu.femass.dao.Dao;
 import br.edu.femass.dao.PlanoDao;
 import br.edu.femass.model.PlanoDeSaude;
 import javafx.collections.FXCollections;
@@ -24,6 +25,8 @@ import javafx.scene.input.MouseEvent;
 
 public class CadastroPlanoController implements Initializable{
 
+    private Dao<PlanoDeSaude> planoDao = new PlanoDao();
+
     @FXML
     private TextField TxtNome;
 
@@ -35,49 +38,6 @@ public class CadastroPlanoController implements Initializable{
 
     @FXML
     private ListView<PlanoDeSaude> listaPlano;
-
-    @FXML
-    private void listaPlano_mouseClicked(MouseEvent event){
-        exibirDados();
-    }
-
-    @FXML
-    private void listaPlano_keyPressed(KeyEvent event){
-        exibirDados();
-    }
-
-    private void exibirDados() {
-        PlanoDeSaude plano = listaPlano.getSelectionModel().getSelectedItem();
-        if(plano == null) return;
-
-        TxtNome.setText(plano.getNome());
-        TxtTipo.setText(plano.getTipo());
-        TxtId.setText(plano.getId().toString());
-    }
-
-    private PlanoDao planoDao = new PlanoDao();
-
-    @FXML
-    private void btnExcluir(ActionEvent event) throws StreamReadException, DatabindException, IOException{
-        PlanoDeSaude plano = listaPlano.getSelectionModel().getSelectedItem();
-        Alert alerta = new Alert(AlertType.ERROR);
-
-        if(plano == null) return;
-        try {
-            if(planoDao.excluir(plano) == false) {
-                alerta.setTitle("Não foi possível excluir o plano.");
-                alerta.show();
-            }
-            
-            exibirPlanos();
-            
-            TxtNome.setText("");
-            TxtTipo.setText("");
-            TxtId.setText("");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void btnSalvar(ActionEvent event) {
@@ -112,6 +72,48 @@ public class CadastroPlanoController implements Initializable{
         TxtId.setText("");
     }
 
+    @FXML
+    private void btnExcluir(ActionEvent event) throws StreamReadException, DatabindException, IOException{
+        PlanoDeSaude plano = listaPlano.getSelectionModel().getSelectedItem();
+        Alert alerta = new Alert(AlertType.ERROR);
+
+        if(plano == null) return;
+        try {
+            if(planoDao.excluir(plano) == false) {
+                alerta.setTitle("Não foi possível excluir o plano.");
+                alerta.show();
+            }
+            
+            exibirPlanos();
+            
+            TxtNome.setText("");
+            TxtTipo.setText("");
+            TxtId.setText("");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void listaPlano_mouseClicked(MouseEvent event){
+        exibirDados();
+    }
+
+    @FXML
+    private void listaPlano_keyPressed(KeyEvent event){
+        exibirDados();
+    }
+
+    private void exibirDados() {
+        PlanoDeSaude plano = listaPlano.getSelectionModel().getSelectedItem();
+        if(plano == null) return;
+
+        TxtNome.setText(plano.getNome());
+        TxtTipo.setText(plano.getTipo());
+        TxtId.setText(plano.getId().toString());
+    }
+
+
     public void exibirPlanos() throws StreamReadException, DatabindException, IOException {
         ObservableList<PlanoDeSaude> data = FXCollections.observableArrayList(planoDao.buscar());
         listaPlano.setItems(data);
@@ -122,7 +124,6 @@ public class CadastroPlanoController implements Initializable{
         try {
             exibirPlanos();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

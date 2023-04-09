@@ -1,0 +1,13 @@
+[ {
+  "nome" : "Pedro",
+  "cpf" : "18816173785",
+  "idade" : "1",
+  "telefones" : [ "1" ],
+  "id" : 2,
+  "crm" : "1",
+  "especializacao" : {
+    "id" : 33,
+    "especializacao" : "baa",
+    "faculdade" : "123baa"
+  }
+} ]
