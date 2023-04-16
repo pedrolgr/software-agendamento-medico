@@ -30,9 +30,6 @@ public class CadastroEspecializacaoController implements Initializable{
     private TextField TxtEspecializacao;
 
     @FXML
-    private TextField TxtFaculdade;
-
-    @FXML
     private TextField TxtId;
 
     @FXML
@@ -43,13 +40,11 @@ public class CadastroEspecializacaoController implements Initializable{
         Alert alerta = new Alert(AlertType.ERROR);
 
         try{
-            if (TxtEspecializacao.getText().length() == 0 || 
-            TxtFaculdade.getText().length() == 0) {
+            if (TxtEspecializacao.getText().length() == 0) {
                 throw new IllegalArgumentException("Todos os campos são obrigatórios!");
             } else {
                 Especializacao especializacao = new Especializacao(
-                TxtEspecializacao.getText(), 
-                TxtFaculdade.getText()
+                TxtEspecializacao.getText()
             );
 
             TxtId.setText(especializacao.getId().toString());
@@ -67,7 +62,6 @@ public class CadastroEspecializacaoController implements Initializable{
         }
 
         TxtEspecializacao.setText("");
-        TxtFaculdade.setText("");
         TxtId.setText("");
     }
 
@@ -86,7 +80,6 @@ public class CadastroEspecializacaoController implements Initializable{
             exibirEspecializacoes();
             
             TxtEspecializacao.setText("");
-            TxtFaculdade.setText("");
             TxtId.setText("");
         } catch (Exception e){
             e.printStackTrace();
@@ -108,7 +101,6 @@ public class CadastroEspecializacaoController implements Initializable{
         if(especializacao == null) return;
 
         TxtEspecializacao.setText(especializacao.getEspecializacao());
-        TxtFaculdade.setText(especializacao.getfaculdade());
         TxtId.setText(especializacao.getId().toString());
     }
 

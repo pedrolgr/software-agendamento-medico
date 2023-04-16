@@ -1,25 +1,21 @@
 package br.edu.femass.model;
 
-import java.util.List;
 import java.util.Set;
 
 public class PlanoDeSaude {
     private Long id;
     private String nome;
-    private String tipo;
 
-    private static Long ultimoId = 0L;
+    public static Long ultimoId = 0L;
 
     public PlanoDeSaude () {
 
     }
 
-    public PlanoDeSaude (String nome, String tipo) {
+    public PlanoDeSaude (String nome) {
         this.nome = nome;
-        this.tipo = tipo;
 
         this.id = ultimoId+1;
-        ultimoId++;
     }
 
     public Long getId(){
@@ -34,14 +30,6 @@ public class PlanoDeSaude {
         this.nome = nome;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     @Override
     public String toString() {
         return this.nome;
@@ -51,7 +39,7 @@ public class PlanoDeSaude {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         return result;
     }
 
@@ -64,10 +52,10 @@ public class PlanoDeSaude {
         if (getClass() != obj.getClass())
             return false;
         PlanoDeSaude other = (PlanoDeSaude) obj;
-        if (tipo == null) {
-            if (other.tipo != null)
+        if (nome == null) {
+            if (other.nome != null)
                 return false;
-        } else if (!tipo.equals(other.tipo))
+        } else if (!nome.equals(other.nome))
             return false;
         return true;
     }

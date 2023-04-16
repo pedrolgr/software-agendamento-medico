@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Medico extends Pessoa{
-    protected Long id;
-    protected String crm;
-    protected Especializacao especializacao;
+    private Long id;
+    private String crm;
+    protected List<Especializacao> especializacoes = new ArrayList<Especializacao>();
 
     public static Long ultimoId = 0L;
 
@@ -19,10 +19,8 @@ public class Medico extends Pessoa{
     String cpf, 
     String idade, 
     String telefone, 
-    String crm, 
-    Especializacao especializacao) {
+    String crm) {
         super(nome, cpf, idade, telefone);
-        this.especializacao = especializacao;
         this.crm = crm;
 
         this.id = ultimoId+1;
@@ -32,8 +30,12 @@ public class Medico extends Pessoa{
         return this.id;
     }
 
-    public Especializacao getEspecializacao() {
-        return especializacao;
+    public List<Especializacao> getEspecializacao() {
+        return especializacoes;
+    }
+
+    public void addEspecializacao(Especializacao especializacao){
+        this.especializacoes.add(especializacao);
     }
 
     public String getCrm() {

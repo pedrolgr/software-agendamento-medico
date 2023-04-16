@@ -6,6 +6,9 @@ import java.util.Set;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
+import br.edu.femass.model.Especializacao;
+import javafx.util.Callback;
+
 public interface Dao<T> {
 
     public boolean gravar(T objeto) throws StreamReadException, IOException ;

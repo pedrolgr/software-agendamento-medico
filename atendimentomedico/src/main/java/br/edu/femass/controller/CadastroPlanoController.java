@@ -31,9 +31,6 @@ public class CadastroPlanoController implements Initializable{
     private TextField TxtNome;
 
     @FXML
-    private TextField TxtTipo;
-
-    @FXML
     private TextField TxtId;
 
     @FXML
@@ -44,13 +41,11 @@ public class CadastroPlanoController implements Initializable{
         Alert alerta = new Alert(AlertType.ERROR);
 
         try{
-            if (TxtNome.getText().length() == 0 || 
-            TxtTipo.getText().length() == 0) {
+            if (TxtNome.getText().length() == 0) {
                 throw new IllegalArgumentException("Todos os campos são obrigatórios!");
             } else {
                 PlanoDeSaude plano = new PlanoDeSaude(
-                TxtNome.getText(), 
-                TxtTipo.getText()
+                TxtNome.getText()
             );
 
             TxtId.setText(plano.getId().toString());
@@ -58,6 +53,8 @@ public class CadastroPlanoController implements Initializable{
             if(planoDao.gravar(plano) == false) {
                 alerta.setTitle("Não foi possível salvar o plano.");
                 alerta.show();
+            } else {
+                plano.ultimoId++;
             }
             exibirPlanos();
             
@@ -68,7 +65,6 @@ public class CadastroPlanoController implements Initializable{
         }
 
         TxtNome.setText("");
-        TxtTipo.setText("");
         TxtId.setText("");
     }
 
@@ -87,7 +83,6 @@ public class CadastroPlanoController implements Initializable{
             exibirPlanos();
             
             TxtNome.setText("");
-            TxtTipo.setText("");
             TxtId.setText("");
         } catch (Exception e){
             e.printStackTrace();
@@ -109,7 +104,6 @@ public class CadastroPlanoController implements Initializable{
         if(plano == null) return;
 
         TxtNome.setText(plano.getNome());
-        TxtTipo.setText(plano.getTipo());
         TxtId.setText(plano.getId().toString());
     }
 

@@ -59,8 +59,7 @@ public class CadastroPacienteController implements Initializable {
             if (TxtNome.getText().length() == 0 || 
             TxtCpf.getText().length() == 0 ||
             TxtTelefone.getText().length() == 0 ||
-            TxtIdade.getText().length() == 0 ||
-            CboPlano.getValue() == null
+            TxtIdade.getText().length() == 0
             ) {
                 throw new IllegalArgumentException("Todos os campos são obrigatórios!");
             } else {

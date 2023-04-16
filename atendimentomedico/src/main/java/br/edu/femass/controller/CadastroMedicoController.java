@@ -50,9 +50,6 @@ public class CadastroMedicoController implements Initializable{
     private TextField TxtCrm;
 
     @FXML
-    private ComboBox<Especializacao> CboEspecializacao;
-
-    @FXML
     private ListView<Medico> listaMedico;
 
     @FXML
@@ -64,8 +61,8 @@ public class CadastroMedicoController implements Initializable{
             TxtCpf.getText().length() == 0 ||
             TxtTelefone.getText().length() == 0 ||
             TxtIdade.getText().length() == 0 ||
-            CboEspecializacao.getValue() == null ||
-            TxtCrm.getText().length() == 0
+            TxtCrm.getText().length() == 0 ||
+            listaEspecializacao.getItems().isEmpty()
             ) {
                 throw new IllegalArgumentException("Todos os campos são obrigatórios!");
             } else {
@@ -74,11 +71,14 @@ public class CadastroMedicoController implements Initializable{
                 TxtCpf.getText(),
                 TxtIdade.getText(),
                 TxtTelefone.getText(),
-                TxtCrm.getText(),
-                CboEspecializacao.getSelectionModel().getSelectedItem());
+                TxtCrm.getText());
 
                 TxtId.setText(medico.getId().toString());
 
+                for(Especializacao esp : listaEspecializacao.getItems()){
+                    medico.addEspecializacao(esp);
+                }
+                
                 if(medicoDao.gravar(medico) == false) {
                     alerta.setTitle("Não foi possível salvar o medico.");
                     alerta.show();
@@ -100,6 +100,7 @@ public class CadastroMedicoController implements Initializable{
         TxtTelefone.setText("");
         TxtCrm.setText("");
         CboEspecializacao.getSelectionModel().select(null);
+        listaEspecializacao.getItems().clear();
     }
 
     @FXML
@@ -138,6 +139,33 @@ public class CadastroMedicoController implements Initializable{
         exibirDados();
     }
 
+    @FXML
+    private ComboBox<Especializacao> CboEspecializacao;
+
+    @FXML
+    private void btnAddEspecializacao(ActionEvent event){
+        if(CboEspecializacao.getValue() == null) return;
+        listaEspecializacao.getItems().add(CboEspecializacao.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    private ListView<Especializacao> listaEspecializacao;
+
+    @FXML
+    private void listaEsp_mouseClicked(MouseEvent event){
+        
+    }
+
+    @FXML
+    private void listaEsp_keyPressed(KeyEvent event){
+        
+    }
+
+    @FXML
+    private void btnExcluirEspecializacao(ActionEvent event){
+        listaEspecializacao.getItems().remove(CboEspecializacao.getSelectionModel().getSelectedItem());
+    }
+
     private void exibirDados() {
         Medico medico = listaMedico.getSelectionModel().getSelectedItem();
         if(medico == null) return;
@@ -145,8 +173,8 @@ public class CadastroMedicoController implements Initializable{
         TxtNome.setText(medico.getNome());
         TxtCpf.setText(medico.getCpf());
         TxtId.setText(medico.getId().toString());
+        TxtCrm.setText(medico.getCrm().toString());
         TxtIdade.setText(String.valueOf(medico.getIdade()));
-        CboEspecializacao.getSelectionModel().select(medico.getEspecializacao());
         TxtTelefone.setText(medico.getTelefones().get(0));
     }
 

@@ -5,7 +5,6 @@ import java.util.Set;
 public class Especializacao {
     private long id;
     private String especializacao;
-    private String faculdade;
 
     private static Long ultimoId = 0L;
 
@@ -13,10 +12,10 @@ public class Especializacao {
 
     }
 
-    public Especializacao(String especializacao, String faculdade) {
+    public Especializacao(String especializacao) {
         this.especializacao = especializacao;
-        this.faculdade = faculdade;
 
+        if(this.especializacao == null) throw new IllegalArgumentException("Especialização inválida");
         this.id = ultimoId+1;
         ultimoId++;
     }
@@ -31,14 +30,6 @@ public class Especializacao {
 
     public void setEspecializacao(String especializacao) {
         this.especializacao = especializacao;
-    }
-
-    public String getfaculdade() {
-        return this.faculdade;
-    }
-
-    public void setfaculdade(String faculdade) {
-        this.faculdade = faculdade;
     }
 
     @Override

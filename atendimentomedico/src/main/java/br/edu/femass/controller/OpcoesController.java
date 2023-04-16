@@ -77,7 +77,18 @@ public class OpcoesController implements Initializable{
     }
     @FXML
     private void btnConsulta(ActionEvent action) {
-        System.out.println("Consulta");
+        
+        FXMLLoader fx = new FXMLLoader(OpcoesController.class.getResource("/fxml/CadastroAgenda.fxml"));
+       
+        try {
+            Scene s = new Scene(fx.load());
+            Stage st = new Stage();
+            st.setTitle("Cadastro Especializacao");
+            st.setScene(s);
+            st.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -6,13 +6,10 @@ import java.util.List;
 import br.edu.femass.utils.Validador;
 
 public class Pessoa {
-    // protected Long id;
     protected String nome;
     protected String cpf;
     protected String idade;
     protected List<String> telefones = new ArrayList<String>();
-
-    // protected static Long ultimoId = 0L;
 
     public Pessoa() {
 

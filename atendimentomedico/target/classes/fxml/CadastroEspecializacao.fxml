@@ -33,13 +33,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="17.0" prefWidth="115.0" text="Faculdade" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <TextField fx:id="TxtEspecializacao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="TxtFaculdade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#btnSalvar" prefHeight="25.0" prefWidth="177.0" text="Salvar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="17.0" prefWidth="115.0" text="ID">
                      <font>

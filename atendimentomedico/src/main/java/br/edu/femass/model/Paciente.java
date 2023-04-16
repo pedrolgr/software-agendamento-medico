@@ -3,8 +3,8 @@ package br.edu.femass.model;
 import java.util.Set;
 
 public class Paciente extends Pessoa{
-    protected PlanoDeSaude plano;
-    protected Long id;
+    private PlanoDeSaude plano;
+    private Long id;
 
     public static Long ultimoId = 0L;
 
@@ -15,6 +15,8 @@ public class Paciente extends Pessoa{
     public Paciente(String nome, String cpf, String idade, String telefone, PlanoDeSaude plano){
         super(nome, cpf, idade, telefone);
         this.plano = plano;
+
+        // if(this.plano == null) throw new IllegalArgumentException("Plano inválido");
 
         this.id = ultimoId+1;
     }
