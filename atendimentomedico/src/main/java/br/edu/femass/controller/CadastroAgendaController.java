@@ -53,6 +53,9 @@ public class CadastroAgendaController implements Initializable{
     private ComboBox<Medico> CboMedico;
 
     @FXML
+    private ComboBox<Medico> CboMedico2;
+
+    @FXML
     private ComboBox<Especializacao> CboEsp;
 
     @FXML
@@ -155,6 +158,29 @@ public class CadastroAgendaController implements Initializable{
         exibirMedicos(especializacao);
     }
 
+    @FXML
+    public void CboMedAction (ActionEvent actionEvent) throws StreamReadException, DatabindException, IOException {
+        Medico medico = CboMedico2.getSelectionModel().getSelectedItem();
+        if(medico == null) return;
+
+        exibirAgendasMedico(medico);
+    }
+
+    public void exibirAgendasMedico(Medico medico) throws StreamReadException, DatabindException, IOException {
+        try {
+            ObservableList<Agenda> data = FXCollections.observableArrayList(((AgendaDao) agendaDao).buscarAgendas(medico));
+            tableAgendamento.setItems(data);
+
+            colPaciente.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+            colMedico.setCellValueFactory(new PropertyValueFactory<>("medico"));
+            colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+            colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+            colEsp.setCellValueFactory(new PropertyValueFactory<>("especializacao"));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+    }
+
     private void exibirDados() {
         Agenda agenda = tableAgendamento.getSelectionModel().getSelectedItem();
         if(agenda == null) return;
@@ -199,12 +225,21 @@ public class CadastroAgendaController implements Initializable{
                 ex.printStackTrace();
             }
     }
-	
+
 	public void exibirMedicos(Especializacao especializacao) throws StreamReadException, DatabindException, IOException {
         try {
             ObservableList<Medico> data = FXCollections.observableArrayList(
                 ((MedicoDao) medicoDao).buscarEspecializacao(especializacao));
             CboMedico.setItems(data);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+    }
+
+    public void exibirMedicosAgendados() throws StreamReadException, DatabindException, IOException {
+        try {
+            ObservableList<Medico> data = FXCollections.observableArrayList(medicoDao.buscar());
+            CboMedico2.setItems(data);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -216,6 +251,7 @@ public class CadastroAgendaController implements Initializable{
             exibirAgendas();
             exibirPacientes();
             exibirEspecializacoes();
+            exibirMedicosAgendados();
             } catch (StreamReadException e) {
                 e.printStackTrace();
             } catch (DatabindException e) {

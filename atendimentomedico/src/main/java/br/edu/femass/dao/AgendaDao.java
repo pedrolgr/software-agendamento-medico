@@ -2,7 +2,9 @@ package br.edu.femass.dao;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -45,6 +47,17 @@ public class AgendaDao extends Persist implements Dao<Agenda>{
            } catch (IOException ex) {
             return new HashSet<Agenda>();
            } 
+    }
+
+    public List<Agenda> buscarAgendas(Medico medico) throws StreamReadException, DatabindException, IOException {
+        Set<Agenda> agendas = buscar();
+
+        List<Agenda> medicosAgendados = agendas
+        .stream()
+        .filter(agenda -> agenda.getMedico().equals(medico))
+        .collect(Collectors.toList());
+
+        return medicosAgendados;
     }
     
 }

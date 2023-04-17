@@ -91,6 +91,14 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <Label prefHeight="20.0" prefWidth="132.0" text="Agenda Médico">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="CboMedico2" onAction="#CboMedAction" prefHeight="25.0" prefWidth="189.0" GridPane.columnIndex="1" />
+               </children>
             </GridPane>
          </children>
       </Pane>

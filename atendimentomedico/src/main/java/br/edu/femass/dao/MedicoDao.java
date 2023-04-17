@@ -59,5 +59,9 @@ public class MedicoDao extends Persist implements Dao<Medico>{
 
         return especializacoes;
     }
+
+    // public Callback buscarAgendas(Medico medico) {
+    //     return null;
+    // }
     
 }
