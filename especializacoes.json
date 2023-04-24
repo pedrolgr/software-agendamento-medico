@@ -1,0 +1,10 @@
+[ {
+  "id" : 2,
+  "especializacao" : "Neurologista"
+}, {
+  "id" : 3,
+  "especializacao" : "Ginecologista"
+}, {
+  "id" : 1,
+  "especializacao" : "Cardiologista"
+} ]

@@ -1,0 +1,43 @@
+[ {
+  "nome" : "Paulinho",
+  "cpf" : "71389496856",
+  "idade" : "3",
+  "telefones" : [ "1" ],
+  "id" : 2,
+  "crm" : "2",
+  "especializacao" : [ {
+    "id" : 3,
+    "especializacao" : "Ginecologista"
+  }, {
+    "id" : 1,
+    "especializacao" : "Cardiologista"
+  } ]
+}, {
+  "nome" : "Rubens",
+  "cpf" : "33145628020",
+  "idade" : "3",
+  "telefones" : [ "1" ],
+  "id" : 3,
+  "crm" : "23",
+  "especializacao" : [ {
+    "id" : 2,
+    "especializacao" : "Neurologista"
+  }, {
+    "id" : 3,
+    "especializacao" : "Ginecologista"
+  }, {
+    "id" : 1,
+    "especializacao" : "Cardiologista"
+  } ]
+}, {
+  "nome" : "Marcos",
+  "cpf" : "18816173785",
+  "idade" : "3",
+  "telefones" : [ "1" ],
+  "id" : 1,
+  "crm" : "23",
+  "especializacao" : [ {
+    "id" : 1,
+    "especializacao" : "Cardiologista"
+  } ]
+} ]
